@@ -137,7 +137,11 @@ double MainWindow::evaluateExpression(const QString &expr)
                     return 0.0;
                 }
             } else if (mulDivOp == "%") {
-                return left * right / 100.0;
+                if (right != 0.0) {
+                    return fmod(left, right);  // 取余操作
+                } else {
+                    return 0.0;
+                }
             }
         }
     }
